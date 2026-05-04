@@ -1,0 +1,8 @@
+//
+//  Config.xcconfig
+//  RecipeFinder
+//
+//  Created by Alex McGuinn on 4/5/2026.
+//
+
+API_KEY = ...
