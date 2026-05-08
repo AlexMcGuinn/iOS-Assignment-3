@@ -4,6 +4,7 @@
 //
 //  Created by Alex McGuinn on 4/5/2026.
 //
+import Foundation
 
 struct Recipe: Identifiable, Codable {
     let id: UUID
