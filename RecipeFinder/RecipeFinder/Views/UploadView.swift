@@ -14,7 +14,6 @@ struct UploadView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-
                 Text("Upload Receipt")
                     .font(.headline)
 
