@@ -29,6 +29,7 @@ struct HomeView: View {
                         Image(systemName: "magnifyingglass")
                             .foregroundStyle(.secondary)
                         TextField("Search recipes...", text: $searchText)
+                            .accessibilityIdentifier("searchTextField")
                             .onSubmit {
                                 if !searchText.trimmingCharacters(in: .whitespaces).isEmpty {
                                     searchSubmitted = true
@@ -51,6 +52,7 @@ struct HomeView: View {
                         .background(Color.green)
                         .foregroundStyle(.white)
                         .cornerRadius(12)
+                        .accessibilityIdentifier("uploadImageButton")
                     }
 
                     // Discover section
@@ -78,7 +80,7 @@ struct HomeView: View {
                             ForEach(viewModel.meals) { meal in
                                 NavigationLink(destination: RecipeDetailView(mealID: meal.idMeal)) {
                                     MealGridCard(meal: meal)
-                                }
+                                }.accessibilityIdentifier("mealCard")
                             }
                         }
                     }
@@ -107,17 +109,20 @@ struct MealGridCard: View {
             .frame(height: 120)
             .frame(maxWidth: .infinity)
             .clipShape(RoundedRectangle(cornerRadius: 10))
+            .accessibilityIdentifier("mealCardImage")
 
             Text(meal.strMeal)
                 .font(.caption)
                 .fontWeight(.semibold)
                 .lineLimit(2)
                 .foregroundStyle(.primary)
+                .accessibilityIdentifier("mealCardText")
 
             if let category = meal.strCategory {
                 Text(category)
                     .font(.caption2)
                     .foregroundStyle(.secondary)
+                    .accessibilityIdentifier("mealCardCategory")
             }
         }
     }

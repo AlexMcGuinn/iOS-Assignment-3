@@ -22,6 +22,7 @@ struct ResultsView: View {
                 Text(title)
                     .font(.title3)
                     .fontWeight(.bold)
+                    .accessibilityIdentifier("resultsTitle")
 
                 if viewModel.isLoading {
                     ProgressView()
@@ -69,6 +70,7 @@ struct RecipeCard: View {
                 Text(meal.strMeal)
                     .fontWeight(.semibold)
                     .foregroundStyle(.primary)
+                    .accessibilityIdentifier("mealTitle")
 
                 if let category = meal.strCategory {
                     Text(category)

@@ -40,6 +40,7 @@ struct RecipeDetailView: View {
                         VStack(alignment: .leading, spacing: 6) {
                             Text(meal.strMeal)
                                 .font(.title2.bold())
+                                .accessibilityIdentifier("recipeTitle")
 
                             HStack(spacing: 12) {
                                 if let area = meal.strArea {

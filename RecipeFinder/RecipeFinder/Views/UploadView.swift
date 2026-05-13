@@ -16,6 +16,7 @@ struct UploadView: View {
             VStack(spacing: 20) {
                 Text("Upload Receipt")
                     .font(.headline)
+                    .accessibilityIdentifier("uploadHeading")
 
                 // Image preview
                 ZStack {
