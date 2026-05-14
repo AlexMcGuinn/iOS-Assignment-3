@@ -1,11 +1,6 @@
 # Recipe Finder
 
-This is a recipe finder app for iOS built with Swift. It provides different ways to discover recipes like searching and uploading receipts. The recipes are retrieved from TheMealDB API.
-
-
-# SnapRecipe
-
-SnapRecipe is an iOS recipe finder application built using SwiftUI. The app allows users to search for recipes, view cooking instructions, save favourite meals, and view recipe history using data from TheMealDB API.
+This is an iOS recipe finder application built using SwiftUI. The app allows users to search for recipes, view cooking instructions, save favourite meals, and view recipe history using data from TheMealDB API.
 
 
 ## Features
@@ -34,7 +29,7 @@ https://github.com/AlexMcGuinn/iOS-Assignment-3
 
 ## Team Members
 
-- [Student Name]
-- [Student Name]
-- [Student Name]
-- [Student Name]
+- Alex McGuinn
+- Aung Ko Khaing
+- David Lee
+- Yeseul Gim
