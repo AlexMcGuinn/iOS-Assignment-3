@@ -39,6 +39,7 @@ struct ResultsView: View {
             }
             .padding()
         }
+        .background(Theme.background)
         .navigationTitle("Results")
         .task {
             if !searchQuery.isEmpty {
@@ -56,31 +57,53 @@ struct RecipeCard: View {
     var meal: MealDBMeal
 
     var body: some View {
-        HStack {
+        HStack(spacing: 14) {
             AsyncImage(url: meal.thumbnailURL) { image in
-                image.resizable().scaledToFill()
+                image
+                    .resizable()
+                    .scaledToFill()
             } placeholder: {
                 Color(.systemGray5)
             }
-            .frame(width: 80, height: 80)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .frame(width: 96, height: 96)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
 
-            VStack(alignment: .leading, spacing: 4) {
-                Text(meal.strMeal)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.primary)
-
+            VStack(alignment: .leading, spacing: 8) {
                 if let category = meal.strCategory {
                     Text(category)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .font(.caption2)
+                        .fontWeight(.semibold)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Theme.primary.opacity(0.14))
+                        .foregroundStyle(Theme.primary)
+                        .clipShape(Capsule())
                 }
+
+                Text(meal.strMeal)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.primary)
+                    .lineLimit(2)
+
+                Text("Tap to view ingredients and cooking steps")
+                    .font(.caption)
+                    .foregroundStyle(.gray)
+                    .opacity(0.85)
+                    .lineLimit(2)
             }
 
             Spacer()
+
+            Image(systemName: "chevron.right")
+                .font(.caption)
+                .fontWeight(.semibold)
+                .foregroundStyle(Theme.primary)
         }
-        .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
+        .padding(14)
+        .background(Theme.card)
+        .clipShape(RoundedRectangle(cornerRadius: 24))
+        .shadow(color: .black.opacity(0.04), radius: 6, x: 0, y: 2)
+        
     }
 }

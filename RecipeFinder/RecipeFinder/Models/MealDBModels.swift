@@ -87,9 +87,17 @@ struct MealDBMeal: Codable, Identifiable {
 
     var steps: [String] {
         guard let instructions = strInstructions else { return [] }
+
         return instructions
             .components(separatedBy: "\r\n")
-            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
             .filter { !$0.isEmpty }
+            .map { step in
+                step
+                    .replacingOccurrences(of: #"(?i)step\s*\d+[:.-]?"#,
+                                          with: "",
+                                          options: .regularExpression)
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+            }
     }
 }

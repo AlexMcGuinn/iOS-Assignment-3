@@ -30,8 +30,7 @@ struct ContentView: View {
                     Label("Profile", systemImage: "person")
                 }
         }
-        .accentColor(Color.green)
-    }
+        .accentColor(Theme.primary)    }
 }
 
 #Preview {

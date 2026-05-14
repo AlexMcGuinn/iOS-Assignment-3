@@ -12,10 +12,10 @@ struct UploadView: View {
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 20) {
                 Text("Upload Receipt")
-                    .font(.headline)
+                    .font(.system(size: 28, weight: .bold, design: .rounded))
 
                 // Image preview
                 ZStack {
@@ -27,7 +27,7 @@ struct UploadView: View {
                             .cornerRadius(16)
                     } else {
                         Rectangle()
-                            .fill(Color(.systemGray5))
+                            .fill(Color(red: 0.93, green: 0.93, blue: 0.91))
                             .frame(height: 300)
                             .overlay(Text("No Image Selected"))
                             .cornerRadius(16)
@@ -36,14 +36,26 @@ struct UploadView: View {
 
                 // Buttons
                 HStack {
-                    Button("Take Photo") {
+                    Button {
                         sourceType = .camera
                         showImagePicker = true
+                    } label: {
+                        Label("Take Photo", systemImage: "camera")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Theme.card)
+                            .cornerRadius(18)
                     }
 
-                    Button("Gallery") {
+                    Button {
                         sourceType = .photoLibrary
                         showImagePicker = true
+                    } label: {
+                        Label("Gallery", systemImage: "photo")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Theme.card)
+                            .cornerRadius(18)
                     }
                 }
 
@@ -56,13 +68,15 @@ struct UploadView: View {
                 .disabled(selectedImage == nil)
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(selectedImage == nil ? Color.gray : Color.green)
+                .background(selectedImage == nil ? Color.gray.opacity(0.4) : Theme.primary)
                 .foregroundColor(.white)
-                .cornerRadius(12)
+                .cornerRadius(24)
+                .shadow(color: .black.opacity(0.04), radius: 6, x: 0, y: 2)
 
                 Spacer()
             }
             .padding()
+            .background(Theme.background)
         }
         .sheet(isPresented: $showImagePicker) {
             ImagePicker(sourceType: sourceType, selectedImage: $selectedImage)

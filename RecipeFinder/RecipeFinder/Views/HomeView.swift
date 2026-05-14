@@ -16,11 +16,19 @@ struct HomeView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     // Header
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Hi, User!")
-                            .font(.title)
+                    VStack(alignment: .leading, spacing: 8) {
+
+                        Text("RecipeFinder")
+                            .font(.caption)
+                            .fontWeight(.medium)
+                            .foregroundStyle(.secondary)
+                            .opacity(0.7)
+
+                        Text("Find your next meal")
+                            .font(.largeTitle)
                             .fontWeight(.bold)
-                        Text("What's cooking today?")
+
+                        Text("Search ingredients or explore new recipes")
                             .foregroundStyle(.secondary)
                     }
 
@@ -36,8 +44,9 @@ struct HomeView: View {
                             }
                     }
                     .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(12)
+                    .background(Theme.card)
+                    .cornerRadius(24)
+                    .shadow(color: .black.opacity(0.04), radius: 6, x: 0, y: 2)
 
                     // Upload photo button
                     NavigationLink(destination: UploadView()) {
@@ -48,9 +57,10 @@ struct HomeView: View {
                         }
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.green)
+                        .background(Theme.primary)
+                        .cornerRadius(24)
+                        .shadow(color: .black.opacity(0.04), radius: 6, x: 0, y: 2)
                         .foregroundStyle(.white)
-                        .cornerRadius(12)
                     }
 
                     // Discover section
@@ -61,9 +71,9 @@ struct HomeView: View {
                         Button {
                             Task { await viewModel.loadMultipleRandom(count: 6) }
                         } label: {
-                            Text("Refresh")
-                                .font(.caption)
-                                .foregroundStyle(.green)
+                            Image(systemName: "arrow.clockwise")
+                                .font(.headline)
+                                .foregroundStyle(Theme.primary)
                         }
                     }
 
@@ -85,7 +95,7 @@ struct HomeView: View {
                 }
                 .padding()
             }
-            .navigationTitle("RecipeFinder")
+            .background(Theme.background)
             .navigationDestination(isPresented: $searchSubmitted) {
                 ResultsView(searchQuery: searchText)
             }
@@ -96,7 +106,7 @@ struct HomeView: View {
 
 struct MealGridCard: View {
     let meal: MealDBMeal
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             AsyncImage(url: meal.thumbnailURL) { image in
@@ -104,21 +114,29 @@ struct MealGridCard: View {
             } placeholder: {
                 Color(.systemGray5)
             }
-            .frame(height: 120)
+            .frame(height: 135)
             .frame(maxWidth: .infinity)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            
             Text(meal.strMeal)
                 .font(.caption)
                 .fontWeight(.semibold)
                 .lineLimit(2)
+                .frame(height: 38, alignment: .top)
+                .multilineTextAlignment(.leading)
                 .foregroundStyle(.primary)
-
+            
             if let category = meal.strCategory {
                 Text(category)
                     .font(.caption2)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Color.gray.opacity(0.8))
             }
         }
+        .frame(height: 205)
+        .padding(10)
+        .background(Theme.card)
+        .clipShape(RoundedRectangle(cornerRadius: 24))
+        .shadow(color: .black.opacity(0.03), radius: 10, x: 0, y: 4)
     }
 }
+

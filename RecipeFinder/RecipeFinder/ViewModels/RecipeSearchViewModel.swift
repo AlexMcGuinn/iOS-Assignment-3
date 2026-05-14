@@ -55,7 +55,10 @@ final class RecipeSearchViewModel {
             for await meal in group {
                 if let meal { results.append(meal) }
             }
-            meals = results
+            meals = Array(
+                Dictionary(grouping: results, by: \.idMeal)
+                    .compactMap { $0.value.first }
+            )
         }
         isLoading = false
     }
