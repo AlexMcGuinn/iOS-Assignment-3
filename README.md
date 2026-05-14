@@ -11,3 +11,7 @@ This is a recipe finder app for iOS built with Swift. It provides different ways
 - Scroll through the history of recipes you've seen
 - Detailed views of recipes show ingredients and instructions
 - Recipes link to Youtube videos that show you how to prepare the meals
+
+## GitHub repository link
+
+https://github.com/AlexMcGuinn/iOS-Assignment-3
